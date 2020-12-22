@@ -10,30 +10,20 @@ const Queue = require('../queue/Queue')
 
 const router = express.Router()
 
-// LyricsRouter
-//   .route('/')
-//   .get((req, res, next) => {
-//     LyricsService.getAllLyrics(req.app.get('db'))
-//       .then(lyrics => {
-//         res.json(lyrics)
-//       })
-//       .catch(next)
-//   })
-
 router
-  .route('/')
+  .route('/pets')
   .get((req, res) => {
     res.send(store.dogs.concat(store.cats))
   })
 router
   .route('/cats')
   .get((req, res) => {
-    res.send(Pets.get())
+    res.send(Pets.getCat())
   })
 router
   .route('/dogs')
   .get((req, res) => {
-    res.send(Pets.get(store.dogs))
+    res.send(Pets.getDog())
   })
 
 router.delete('/', json, (req, res) => {

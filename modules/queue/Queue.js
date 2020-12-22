@@ -35,13 +35,13 @@ class Queue {
   }
 
   show() {
-    return this.first;
+    return this.first
     // Return the next item in the queue.
   }
 
   all() {
     // Return all items in the queue.
-    return this.value
+    return this
   }
 }
 
