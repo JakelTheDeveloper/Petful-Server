@@ -1,10 +1,9 @@
 {
   "name": "petful-server",
   "scripts": {
-    
-    "test":"mocha",
+    "test": "mocha",
     "dev": "nodemon server.js",
-    "start":"node server.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -18,5 +17,8 @@
     "mocha": "^8.2.1",
     "nodemon": "^2.0.6",
     "supertest": "^6.0.1"
+  },
+  "engines": {
+    "node": "12.18.3"
   }
 }

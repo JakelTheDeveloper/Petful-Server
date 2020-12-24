@@ -11,23 +11,38 @@ const Queue = require('../queue/Queue')
 const router = express.Router()
 
 router
-  .route('/pets')
-  .get((req, res) => {
-    res.send(store.dogs.concat(store.cats))
-  })
-router
   .route('/cats')
-  .get((req, res) => {
-    res.send(Pets.getCat())
+  .get((req, res, next) => {
+    res.json(Pets.allCats())
+  });
+
+router
+  .route('/cats/next')
+  .get((req, res, next) => {
+    res.json(Pets.getCat())
   })
+  .delete(json, (req, res, next) => {
+    Pets.dequeue('cat')
+    People.dequeue()
+    res.status(204).end()
+  });
+
 router
   .route('/dogs')
-  .get((req, res) => {
-    res.send(Pets.getDog())
-  })
+  .get((req, res, next) => {
+    res.json(Pets.allDogs())
+  });
 
-router.delete('/', json, (req, res) => {
-  // Remove a pet from adoption.
-})
+router
+  .route('/dogs/next')
+  .get((req, res, next) => {
+    res.json(Pets.getDog())
+  })
+  .delete(json, (req, res, next) => {
+    Pets.dequeue('dog')
+    People.dequeue()
+    res.status(204).end()
+
+  });
 
 module.exports = router

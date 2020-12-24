@@ -12,9 +12,8 @@ app.get('/', (req, res) => {
 })
   
 
-app.use('/api', PeopleRouter)
-// app.use('/pets', PetsRouter)
-app.use('/api', PetsRouter)
+app.use('/people', PeopleRouter)
+app.use('/pets', PetsRouter)
 
 
 module.exports = app

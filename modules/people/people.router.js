@@ -5,15 +5,25 @@ const People = require('./people.service')
 const store = require('../../store')
 const router = express.Router()
 
-router
-  .route('/people')
-  .get((req, res) => {
-    // res.send(People.get())
-     res.send(store.people)
-  })
 
-router.post('/', json, (req, res) => {
-  // Add a new person to the queue.
-})
+router
+  .route('/')
+  .get((req, res) => {
+    res.json(People.get());
+  })
+  .post(json, (req, res) => {
+    const person = req.body;
+    res.status(201).json(People.enqueue(person));
+  });
+
+router
+  .route('/next')
+  .get((req, res) => {
+    res.json(People.show());
+  })
+  .delete((req, res) => {
+    People.dequeue();
+    res.status(204).end();
+  });
 
 module.exports = router
